@@ -19,3 +19,4 @@ cd bitcoin
 ./autogen.sh
 ./configure --with-incompatible-bdb
 make
+sudo make install
