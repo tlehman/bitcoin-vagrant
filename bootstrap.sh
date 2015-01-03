@@ -23,7 +23,8 @@ cd bitcoin
 make
 sudo make install
 
-# if no data yet, download a snapshot of the blockchain through BitTorrent (very fast way to get blockchain)
+echo '#!/usr/bin/env bash
+
 if [ ! -d ~/.bitcoin ]; then
   sudo apt-get install -y transmission-cli
   mkdir /vagrant/data/
@@ -34,4 +35,9 @@ if [ ! -d ~/.bitcoin ]; then
   transmission-cli bootstrap.dat.torrent -w /vagrant/data
   ln -s /vagrant/data ~/.bitcoin 
 fi
+' >> ~/bootstrap_blockchain.sh
+
+chmod +x ~/bootstrap_blockchain.sh
+
+echo 'If you want to download all blockchain data using BitTorrent, just run ~/bootstrap_blockchain.sh'
 
