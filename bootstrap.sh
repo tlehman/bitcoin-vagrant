@@ -13,6 +13,8 @@ sudo apt-get install -y libqt4-core libqt4-gui libqt4-dev
 sudo apt-get install -y libprotobuf-dev protobuf-compiler
 sudo apt-get install -y libqrencode-dev
 
+
+# build bitcoin reference implementation from source
 cd /vagrant
 git clone https://github.com/bitcoin/bitcoin.git
 cd bitcoin
@@ -20,3 +22,16 @@ cd bitcoin
 ./configure --with-incompatible-bdb
 make
 sudo make install
+
+# if no data yet, download a snapshot of the blockchain through BitTorrent (very fast way to get blockchain)
+if [ ! -d ~/.bitcoin ]; then
+  sudo apt-get install -y transmission-cli
+  mkdir /vagrant/data/
+  cd /vagrant/data
+  # download bootstrap torrent file
+  wget https://bitcoin.org/bin/blockchain/bootstrap.dat.torrent
+  # fetch snapshot of bitcoin blockchain from BitTorrent network
+  transmission-cli bootstrap.dat.torrent -w /vagrant/data
+  ln -s /vagrant/data ~/.bitcoin 
+fi
+
