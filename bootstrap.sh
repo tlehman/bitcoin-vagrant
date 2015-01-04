@@ -29,11 +29,11 @@ if [ ! -d ~/.bitcoin ]; then
   sudo apt-get install -y transmission-cli
   mkdir /vagrant/data/
   cd /vagrant/data
+  ln -s /vagrant/data ~/.bitcoin 
   # download bootstrap torrent file
   wget https://bitcoin.org/bin/blockchain/bootstrap.dat.torrent
   # fetch snapshot of bitcoin blockchain from BitTorrent network
   transmission-cli bootstrap.dat.torrent -w /vagrant/data
-  ln -s /vagrant/data ~/.bitcoin 
 fi
 ' >> ~/bootstrap_blockchain.sh
 
