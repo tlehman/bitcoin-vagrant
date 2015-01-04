@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# bitcoin data directory (mounted to host's data/ directory)
+mkdir /vagrant/data/
+
 sudo apt-get update
 sudo apt-get install -y git
 sudo apt-get install -y build-essential
@@ -27,9 +30,7 @@ echo '#!/usr/bin/env bash
 
 if [ ! -d ~/.bitcoin ]; then
   sudo apt-get install -y transmission-cli
-  mkdir /vagrant/data/
-  cd /vagrant/data
-  ln -s /vagrant/data ~/.bitcoin 
+  cd /home/vagrant/.bitcoin
   # download bootstrap torrent file
   wget https://bitcoin.org/bin/blockchain/bootstrap.dat.torrent
   # fetch snapshot of bitcoin blockchain from BitTorrent network
