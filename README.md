@@ -22,3 +22,4 @@ This allows the creation of a new Ubuntu 12.04 (64-bit) virtual machine. As part
 
 The goal of these scripts is to reduce the time taken to get one's hands dirty with the Bitcoin source code.
 
+Bitcoin tips: 15aBJYF7Yv4GyQbvAuktgxN7zMNu3yBNwC
