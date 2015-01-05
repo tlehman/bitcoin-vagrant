@@ -28,7 +28,7 @@ sudo make install
 
 echo '#!/usr/bin/env bash
 
-if [ ! -d ~/.bitcoin ]; then
+if [ ! -f ~/.bitcoin/bootstrap.dat ]; then
   sudo apt-get install -y transmission-cli
   cd /home/vagrant/.bitcoin
   # download bootstrap torrent file
