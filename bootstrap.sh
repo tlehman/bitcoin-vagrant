@@ -26,19 +26,9 @@ cd bitcoin
 make
 sudo make install
 
-echo '#!/usr/bin/env bash
+# create data directory and bitcoin.conf
+bitcoind 2>&1 | grep '^rpc' > ~/.bitcoin/bitcoin.conf
 
-if [ ! -f ~/.bitcoin/bootstrap.dat ]; then
-  sudo apt-get install -y transmission-cli
-  cd /home/vagrant/.bitcoin
-  # download bootstrap torrent file
-  wget https://bitcoin.org/bin/blockchain/bootstrap.dat.torrent
-  # fetch snapshot of bitcoin blockchain from BitTorrent network
-  transmission-cli bootstrap.dat.torrent -w /vagrant/data
-fi
-' >> ~/bootstrap_blockchain.sh
-
-chmod +x ~/bootstrap_blockchain.sh
-
-echo 'If you want to download all blockchain data using BitTorrent, just run ~/bootstrap_blockchain.sh'
+echo "Done!"
+echo "If you would like to run the bitcoin daemon, run 'bitcoind -daemon'"
 
